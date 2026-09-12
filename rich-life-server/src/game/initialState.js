@@ -34,9 +34,9 @@ export function createInitialGameState() {
         name: 'Шаурмечная',
         description: 'Быстрый уличный фастфуд и стабильный поток клиентов.',
         activities: [
-          createActivity('shaurma_kiosk', 'Киоск', 40, 1),
-          createActivity('shaurma_delivery', 'Доставка', 220, 4),
-          createActivity('shaurma_night', 'Ночная смена', 900, 14),
+          createActivity('shaurma_kiosk', 'Филиалы', 40, 1),
+          createActivity('shaurma_delivery', 'Зона доставки', 220, 4),
+          createActivity('shaurma_night', 'Режим работы', 900, 14),
           createActivity('shaurma_franchise', 'Франшиза', 4200, 55),
         ],
       },

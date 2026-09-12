@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { X, Clock, TrendingUp, DollarSign, CheckCircle2 } from 'lucide-react';
+import { X, Clock, TrendingUp, DollarSign, CheckCircle2, Store, Truck, Moon, Handshake } from 'lucide-react';
 
 import {
   getActivityCost,
@@ -38,20 +38,12 @@ function formatTime(seconds) {
   return `${hours} ч`;
 }
 
-// Иконки для улучшений шаурмечной
+// Иконки Lucide для улучшений шаурмечной
 const shawarmaIcons = {
-  shaurma_kiosk: '🏪',
-  shaurma_delivery: '🚗',
-  shaurma_night: '🌙',
-  shaurma_franchise: '🤝',
-};
-
-// Новые названия для улучшений с точки зрения реального бизнеса
-const shawarmaActivityNames = {
-  shaurma_kiosk: 'Филиалы',
-  shaurma_delivery: 'Зона доставки',
-  shaurma_night: 'Режим работы',
-  shaurma_franchise: 'Франшиза',
+  shaurma_kiosk: Store,
+  shaurma_delivery: Truck,
+  shaurma_night: Moon,
+  shaurma_franchise: Handshake,
 };
 
 // Описания для улучшений
@@ -156,7 +148,7 @@ export default function BusinessUpgradeModal({
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1">
             <h2 className="text-lg font-semibold text-slate-50">
-              {isShawarma ? '🥙' : '🏢'} {business.name}
+              {business.name}
             </h2>
             <p className="mt-1 text-xs text-slate-400">
               {totalLevel > 0 ? (
@@ -191,18 +183,16 @@ export default function BusinessUpgradeModal({
             const timeRemainingSeconds = Math.max(0, Math.ceil(timeRemaining / 1000));
             const nextLevelTime = getUpgradeTime(activity.id, activity.level);
             
-            // Для шаурмечной используем новые названия
-            const displayName = isShawarma 
-              ? (shawarmaActivityNames[activity.id] || activity.name)
-              : activity.name;
+            // Для шаурмечной используем новые названия из сервера
+            const displayName = activity.name;
             
             const description = isShawarma
               ? (shawarmaActivityDescriptions[activity.id] || '')
               : '';
             
-            const icon = isShawarma
-              ? (shawarmaIcons[activity.id] || '📦')
-              : '📦';
+            const IconComponent = isShawarma
+              ? (shawarmaIcons[activity.id])
+              : null;
 
             return (
               <div
@@ -227,13 +217,15 @@ export default function BusinessUpgradeModal({
 
                 <div className="flex items-center gap-3">
                   {/* Иконка */}
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-800/80 text-lg">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-800/80">
                     {isUpgrading ? (
                       <Clock className="h-5 w-5 animate-pulse text-amber-400" />
                     ) : activity.level > 0 ? (
                       <CheckCircle2 className="h-5 w-5 text-emerald-400" />
+                    ) : IconComponent ? (
+                      <IconComponent className="h-5 w-5 text-slate-300" />
                     ) : (
-                      <span>{icon}</span>
+                      <span className="text-lg">📦</span>
                     )}
                   </div>
 
