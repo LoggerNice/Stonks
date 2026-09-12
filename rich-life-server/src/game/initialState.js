@@ -34,10 +34,10 @@ export function createInitialGameState() {
         name: 'Шаурмечная',
         description: 'Быстрый уличный фастфуд и стабильный поток клиентов.',
         activities: [
-          createActivity('shaurma_kiosk', 'Киоск', 40, 1),
-          createActivity('shaurma_delivery', 'Доставка', 220, 4),
-          createActivity('shaurma_night', 'Ночная смена', 900, 14),
-          createActivity('shaurma_franchise', 'Франшиза', 4200, 55),
+          createActivity('shaurma_kiosk', 'Филиалы', 150, 0.4),
+          createActivity('shaurma_delivery', 'Зона доставки', 750, 1.5),
+          createActivity('shaurma_night', 'Режим работы', 3500, 5),
+          createActivity('shaurma_franchise', 'Франшиза', 15000, 18),
         ],
       },
       {
@@ -45,10 +45,10 @@ export function createInitialGameState() {
         name: 'Грузоперевозки',
         description: 'Чем больше машин и маршрутов, тем выше прибыль.',
         activities: [
-          createActivity('cargo_truck', 'Один грузовик', 120, 3),
-          createActivity('cargo_city', 'Городские перевозки', 650, 12),
-          createActivity('cargo_intercity', 'Междугородние рейсы', 3200, 45),
-          createActivity('cargo_hub', 'Логистический хаб', 16000, 180),
+          createActivity('cargo_truck', 'Один грузовик', 500, 1.2),
+          createActivity('cargo_city', 'Городские перевозки', 2500, 4.5),
+          createActivity('cargo_intercity', 'Междугородние рейсы', 12000, 16),
+          createActivity('cargo_hub', 'Логистический хаб', 55000, 65),
         ],
       },
       {
@@ -56,10 +56,10 @@ export function createInitialGameState() {
         name: 'Автомойка',
         description: 'Машины нужны чистыми всегда.',
         activities: [
-          createActivity('carwash_manual', 'Ручная мойка', 80, 2),
-          createActivity('carwash_auto', 'Автоматическая линия', 750, 15),
-          createActivity('carwash_dry', 'Химчистка салона', 2800, 42),
-          createActivity('carwash_detailing', 'Детейлинг', 12000, 150),
+          createActivity('carwash_manual', 'Ручная мойка', 300, 1),
+          createActivity('carwash_auto', 'Автоматическая линия', 2800, 5.5),
+          createActivity('carwash_dry', 'Химчистка салона', 10000, 15),
+          createActivity('carwash_detailing', 'Детейлинг', 45000, 55),
         ],
       },
       {
@@ -67,10 +67,10 @@ export function createInitialGameState() {
         name: 'Фабрика',
         description: 'Массовое производство и оптовые контракты.',
         activities: [
-          createActivity('factory_line', 'Производственная линия', 900, 18),
-          createActivity('factory_mass', 'Массовое производство', 4500, 75),
-          createActivity('factory_wholesale', 'Оптовые контракты', 20000, 260),
-          createActivity('factory_automation', 'Автоматизация', 90000, 1000),
+          createActivity('factory_line', 'Производственная линия', 3500, 7),
+          createActivity('factory_mass', 'Массовое производство', 17000, 28),
+          createActivity('factory_wholesale', 'Оптовые контракты', 75000, 95),
+          createActivity('factory_automation', 'Автоматизация', 320000, 360),
         ],
       },
       {
@@ -78,9 +78,9 @@ export function createInitialGameState() {
         name: 'Автосервис',
         description: 'Покупка машин, починка и продажа с наценкой.',
         activities: [
-          createActivity('autoservice_buy', 'Покупка авто', 500, 8),
-          createActivity('autoservice_repair', 'Починка', 2500, 35),
-          createActivity('autoservice_sell', 'Продажа', 12000, 140),
+          createActivity('autoservice_buy', 'Покупка авто', 2000, 3),
+          createActivity('autoservice_repair', 'Починка', 9500, 13),
+          createActivity('autoservice_sell', 'Продажа', 45000, 52),
         ],
       },
       {
@@ -88,10 +88,10 @@ export function createInitialGameState() {
         name: 'Строительная компания',
         description: 'От ремонта квартир до крупных объектов.',
         activities: [
-          createActivity('construction_repair', 'Ремонт квартир', 1500, 28),
-          createActivity('construction_commercial', 'Коммерческие объекты', 8000, 120),
-          createActivity('construction_residential', 'Жилые комплексы', 38000, 480),
-          createActivity('construction_gov', 'Госзаказы', 160000, 1800),
+          createActivity('construction_repair', 'Ремонт квартир', 6000, 10),
+          createActivity('construction_commercial', 'Коммерческие объекты', 30000, 45),
+          createActivity('construction_residential', 'Жилые комплексы', 140000, 175),
+          createActivity('construction_gov', 'Госзаказы', 600000, 660),
         ],
       },
       {
@@ -99,10 +99,10 @@ export function createInitialGameState() {
         name: 'IT компания',
         description: 'Проекты, продукты и аутсорсинг.',
         activities: [
-          createActivity('it_freelance', 'Фриланс-проекты', 1000, 20),
-          createActivity('it_web', 'Веб-студия', 6000, 95),
-          createActivity('it_saas', 'SaaS-продукт', 30000, 400),
-          createActivity('it_outsource', 'Аутсорсинг', 130000, 1500),
+          createActivity('it_freelance', 'Фриланс-проекты', 4000, 8),
+          createActivity('it_web', 'Веб-студия', 22000, 35),
+          createActivity('it_saas', 'SaaS-продукт', 110000, 145),
+          createActivity('it_outsource', 'Аутсорсинг', 480000, 550),
         ],
       },
       {
@@ -110,10 +110,10 @@ export function createInitialGameState() {
         name: 'Больница',
         description: 'Медицинские услуги приносят стабильный доход.',
         activities: [
-          createActivity('hospital_therapy', 'Терапевтическое отделение', 2000, 35),
-          createActivity('hospital_diagnostics', 'Диагностика', 10000, 150),
-          createActivity('hospital_surgery', 'Хирургия', 52000, 650),
-          createActivity('hospital_paid_rooms', 'Платные палаты', 220000, 2400),
+          createActivity('hospital_therapy', 'Терапевтическое отделение', 7500, 13),
+          createActivity('hospital_diagnostics', 'Диагностика', 38000, 55),
+          createActivity('hospital_surgery', 'Хирургия', 190000, 240),
+          createActivity('hospital_paid_rooms', 'Платные палаты', 820000, 880),
         ],
       },
     ],
