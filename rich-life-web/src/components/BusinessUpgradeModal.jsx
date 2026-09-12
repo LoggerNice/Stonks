@@ -63,6 +63,40 @@ export default function BusinessUpgradeModal({
 }) {
   const [upgradeTimers, setUpgradeTimers] = useState({});
 
+  // Восстановление таймеров из localStorage при монтировании
+  useEffect(() => {
+    if (!business) {
+      return;
+    }
+
+    try {
+      const savedTimers = localStorage.getItem(`business_timers_${business.id}`);
+      if (savedTimers) {
+        const parsed = JSON.parse(savedTimers);
+        const now = Date.now();
+        // Фильтруем только активные таймеры (которые ещё не истекли)
+        const activeTimers = {};
+        let hasActiveTimers = false;
+        
+        Object.entries(parsed).forEach(([activityId, endTime]) => {
+          if (endTime > now) {
+            activeTimers[activityId] = endTime;
+            hasActiveTimers = true;
+          }
+        });
+        
+        if (hasActiveTimers) {
+          setUpgradeTimers(activeTimers);
+        } else {
+          // Если все таймеры истекли, очищаем localStorage
+          localStorage.removeItem(`business_timers_${business.id}`);
+        }
+      }
+    } catch (error) {
+      console.error('Failed to restore upgrade timers:', error);
+    }
+  }, [business]);
+
   useEffect(() => {
     if (!isOpen) {
       return undefined;
@@ -105,6 +139,19 @@ export default function BusinessUpgradeModal({
           }
         });
 
+        // Сохраняем обновлённые таймеры в localStorage
+        if (hasChanges && business.id === 'shaurma') {
+          try {
+            if (Object.keys(updated).length > 0) {
+              localStorage.setItem(`business_timers_${business.id}`, JSON.stringify(updated));
+            } else {
+              localStorage.removeItem(`business_timers_${business.id}`);
+            }
+          } catch (error) {
+            console.error('Failed to save upgrade timers:', error);
+          }
+        }
+
         return hasChanges ? updated : prev;
       });
     }, 1000);
@@ -119,10 +166,21 @@ export default function BusinessUpgradeModal({
     if (business.id === 'shaurma') {
       const activity = business.activities.find((a) => a.id === activityId);
       const upgradeTime = getUpgradeTime(activityId, activity?.level || 0) * 1000;
-      setUpgradeTimers((prev) => ({
-        ...prev,
-        [activityId]: Date.now() + upgradeTime,
-      }));
+      const endTime = Date.now() + upgradeTime;
+      
+      setUpgradeTimers((prev) => {
+        const updated = {
+          ...prev,
+          [activityId]: endTime,
+        };
+        // Сохраняем в localStorage
+        try {
+          localStorage.setItem(`business_timers_${business.id}`, JSON.stringify(updated));
+        } catch (error) {
+          console.error('Failed to save upgrade timers:', error);
+        }
+        return updated;
+      });
     }
   };
 
