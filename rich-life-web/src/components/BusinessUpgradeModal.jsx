@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { X, Clock, TrendingUp, DollarSign, CheckCircle2, Store, Truck, Moon, Handshake } from 'lucide-react';
+import { X, Clock, TrendingUp, DollarSign, Store, Truck, Moon, Handshake } from 'lucide-react';
 
 import {
   getActivityCost,
@@ -155,8 +155,7 @@ export default function BusinessUpgradeModal({
                 <span className="text-emerald-400">● Работает</span>
               ) : (
                 <span className="text-slate-500">● Не открыт</span>
-              )}{' '}
-              · Уровней: <span className="font-semibold text-slate-200">{totalLevel}</span> · Доход:{' '}
+              )}{' '}· Доход:{' '}
               <span className="font-semibold tabular-nums text-emerald-300">
                 +{formatMoney(income, 1)}/сек
               </span>
@@ -220,8 +219,6 @@ export default function BusinessUpgradeModal({
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-800/80">
                     {isUpgrading ? (
                       <Clock className="h-5 w-5 animate-pulse text-amber-400" />
-                    ) : activity.level > 0 ? (
-                      <CheckCircle2 className="h-5 w-5 text-emerald-400" />
                     ) : IconComponent ? (
                       <IconComponent className="h-5 w-5 text-slate-300" />
                     ) : (
@@ -256,12 +253,6 @@ export default function BusinessUpgradeModal({
                           ? `${formatMoney(currentIncome, 1)}/сек`
                           : `+${formatMoney(activity.baseIncomePerSecond, 1)}/сек при покупке`}
                       </span>
-                      
-                      {isShawarma && !isUpgrading && activity.level > 0 && (
-                        <span className="text-slate-600">
-                          След. уровень: {formatTime(nextLevelTime)}
-                        </span>
-                      )}
                     </div>
                   </div>
 
@@ -310,15 +301,6 @@ export default function BusinessUpgradeModal({
             );
           })}
         </div>
-
-        {/* Подсказка для шаурмечной */}
-        {isShawarma && (
-          <div className="mt-4 rounded-lg bg-slate-800/30 px-3 py-2 text-xs text-slate-400">
-            <Clock className="mr-1 inline h-3 w-3" />
-            Для шаурмечной каждое улучшение требует времени: первый уровень — 1 минута, 
-            каждое следующее — в 3 раза дольше предыдущего
-          </div>
-        )}
       </div>
     </div>,
     document.body
