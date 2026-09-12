@@ -87,6 +87,7 @@ export function buildState(userId) {
       createdAt: user.created_at,
     },
     money: gs.money,
+    lastTick: gs.last_tick,
     businesses,
     assets,
     exclusives,
